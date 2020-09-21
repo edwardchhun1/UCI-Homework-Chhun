@@ -1,0 +1,69 @@
+Sub StockMarket():
+
+For Each ws in Worksheets
+
+' Assigning variables
+
+' Declare Ticker Name
+Dim Ticker_Name as String
+
+'Initial Open Price
+Dim Open_Price as Double
+
+' Year end Close Price
+Dim Close_Price as Double
+
+' Total Volume
+Dim Total_Volume as Double
+
+' Year price change variables
+Dim YearlyPriceChange as Double
+
+' Year price change percent
+Dim Percent_Change as Double
+
+' setting up lastrow and continuous i loop
+Dim lastrow as Long
+Dim i as Long
+
+' Setting variables to 0
+Open_Price = 0
+Close_Price = 0
+Total_Volume = 0 
+YearlyPriceChange = 0
+Percent_Change = 0
+
+' Gather data through the last row 
+lastrow = ws.Cells(Rows.Count, 1).End(xlUp).Row
+
+' Generate results starting on Row 2 for each unique Ticker Value
+Ticker_Tracker = 2
+
+' Insert Header Values
+    ws.Range(I1).Value = "Ticker"
+	ws.Range(J1).Value = "Yearly Change"
+	ws.Range(K1).Value = "Percent Change"
+	ws.Range(L1).Value = "Total Stock Volume"
+
+for i = 2 to lastrow
+
+' initializing the very first open price and the last closing price 
+	Open_Price = ws.Cells(2, 3).Value
+    Close_Price = ws.Cells(i, 6).Value
+
+' Cycle through the ticker values and retain the value when unique value changes
+If ws.Cells(i + 1, 1).Value <> ws.Cells(i, 1).Value Then
+    
+    ' when the +1 value is not the same take the previous ticker value
+    Ticker_Name = ws.Cells(i,1).Value
+
+ ' Calculate the YearlyPriceChange
+YearlyPriceChange = Close_Price - Open_Price
+
+ ' Calculate the Percent_Change  
+Percent_Change = (YearlyPriceChange / Open_Price) * 100
+
+' Calculating total volume for given ticker
+Total_Volume = Total_Volume + CurrentWs.Cells(i, 7).Value
+
+
