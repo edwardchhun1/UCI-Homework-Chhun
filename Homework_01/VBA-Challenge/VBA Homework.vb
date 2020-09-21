@@ -42,7 +42,7 @@ For Each ws In Worksheets
     Dim Ticker_Tracker As Long
     Ticker_Tracker = 2
 
-    ' Gather data through the last row
+    ' Gather data through the last row 
     Dim lastrow As Long
     lastrow = ws.Cells(Rows.Count, 1).End(xlUp).Row
 
