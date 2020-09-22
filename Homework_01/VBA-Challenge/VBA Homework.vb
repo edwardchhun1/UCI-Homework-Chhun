@@ -42,7 +42,7 @@ For Each ws In Worksheets
     Dim Ticker_Tracker As Long
     Ticker_Tracker = 2
 
-    ' Gather data through the last row 
+    ' Gather data through the last row
     Dim lastrow As Long
     lastrow = ws.Cells(Rows.Count, 1).End(xlUp).Row
 
@@ -68,7 +68,7 @@ For Each ws In Worksheets
 
                 ' Calculating total volume for given ticker
                 Total_Volume = Total_Volume + ws.Cells(i, 7).Value
-
+            
 ' ----------------------------------------------------------------------
 ' Getting the values to be input into the cells
 
@@ -78,16 +78,16 @@ For Each ws In Worksheets
                 'Print Yearly Change Value
                 ws.Range("J" & Ticker_Tracker).Value = YearlyPriceChange
 
-                'Print Yearly Percent Change
-                ws.Range("K" & Ticker_Tracker).Value = Percent_Change
-
+                'Print Yearly Percent Change and setting value to two decimals & % symbol
+                ws.Range("K" & Ticker_Tracker).Value = (Str(Percent_Change) & "%")
+             
                 ' Print Total Volume
                 ws.Range("L" & Ticker_Tracker).Value = Total_Volume
 
                 ' Looping again and print for next set of ticker values
                 Ticker_Tracker = Ticker_Tracker + 1
 
-                ' Set variable back to 0 for the next tickers
+                ' Set variable back to 0 for the next tickers - open price is picking up the next open price in the series
                 YearlyPriceChange = 0
                 Close_Price = 0
                 Open_Price = ws.Cells(i + 1, 3).Value
@@ -95,9 +95,10 @@ For Each ws In Worksheets
                 Total_Volume = 0
             
             End If
-        End If
+        End If    
     Next i
 Next ws
 End Sub
+
 
 
