@@ -57,7 +57,7 @@ For Each ws In Worksheets
         Open_Price = ws.Cells(2, 3).Value
 
         ' Begin for loop
-        For i = 2 To lastrow
+    For i = 2 To lastrow
     
             ' Cycle through the ticker values and retain the value when unique value changes
             If ws.Cells(i + 1, 1).Value <> ws.Cells(i, 1).Value Then
@@ -129,7 +129,7 @@ For Each ws In Worksheets
     GreatestDecrease = 0
 
     ' Begin for loop
-        For i = 2 To PercentLastRow
+    For i = 2 To PercentLastRow
 
 ' Begin Conditional Calculations
 
@@ -157,9 +157,8 @@ For Each ws In Worksheets
         ws.Range("P3").Value = (Str(GreatestDecrease * 100) & "%")
     
     End If
+    Next i
 
-        Next i 
-' 
     Dim VolumeLastRow As Long
         VolumeLastRow = ws.Cells(Rows.Count, 12).End(xlUp).Row
 
@@ -167,10 +166,10 @@ For Each ws In Worksheets
     GreatestVolume = 0
    
     ' Begin for loop
-        For i = 2 To VolumeLastRow
+    For i = 2 To VolumeLastRow
 
 
-    If GreatestVolume < ws.Cells(i, 12).Value Then
+        If GreatestVolume < ws.Cells(i, 12).Value Then
         GreatestVolume = ws.Cells(i, 12).Value
                 
         ' Print the ticker value found during Greatest Volume Search
@@ -178,7 +177,8 @@ For Each ws In Worksheets
 
         ' Print the highest volume found in Greatest Volume Search
         ws.Range("P4").Value = (GreatestVolume)
-
+        End If
+    Next i
 'Adding Color for Conditional Formatting
 If ws.Cells(i, 10).Value >= 0 Then
 ws.Cells(i, 10).Interior.ColorIndex = 4
@@ -189,10 +189,10 @@ ws.Cells(i, 10).Interior.ColorIndex = 3
 
 End If
 
-Next i
 Next ws
 
 End Sub
+
 
 
 
