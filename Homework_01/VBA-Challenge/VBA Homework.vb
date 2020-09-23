@@ -9,11 +9,11 @@ For Each ws In Worksheets
     ws.Range("L1").Value = "Total Stock Volume"
     
     ' Bonus header/field declaration
-    ws.Range("O2").Value = "Greatest % Increase"
-    ws.Range("O3").Value = "Greatest % Decrease"
-    ws.Range("O4").Value = "Greatest Total Volume"
-    ws.Range("P1").Value = "Ticker"
-    ws.Range("Q1").Value = "Value"
+    ws.Range("N2").Value = "Greatest % Increase"
+    ws.Range("N3").Value = "Greatest % Decrease"
+    ws.Range("N4").Value = "Greatest Total Volume"
+    ws.Range("O1").Value = "Ticker"
+    ws.Range("P1").Value = "Value"
 
 ' Assigning variables
     Dim i As Long
@@ -118,7 +118,32 @@ For Each ws In Worksheets
 
             End If 
     Next i
+
+' CHALLENGE CALCULATION AND VARIABLE ASSIGNMENTS
+    ' Declaring values for your min and max values 
+    ' Also inserting the scan thru last row
+    Dim GreatIncrease as Double
+    Dim GreatDecrease as Double
+
+    Dim PercentLastRow As Long
+        PercentLastRow = ws.Cells(Rows.Count, 1).End(xlUp).Row
+
+    ' Set Increase and Decrease Value to 0
+    GreatIncrease = 0
+    GreatDecrease = 0
+
+    ' Begin for loop
+        For i = 2 To PercentLastRow
+
+    ' Begin Conditional Calculations
+
+
+
+    Next i 
 Next ws
+
+
+
 End Sub
 
 
