@@ -104,47 +104,78 @@ For Each ws In Worksheets
                 Total_Volume = 0
             
             End If
-        
-        Else   
+           
+
+
+        Else
             Total_Volume = Total_Volume + ws.Cells(i, 7).Value
         
-        End If    
+        End If
 
-            If ws.Cells(i, 10).Value >=0 Then
+            If ws.Cells(i, 10).Value >= 0 Then
                 ws.Cells(i, 10).Interior.ColorIndex = 4
         
-            Else 
+            Else
                 ws.Cells(i, 10).Interior.ColorIndex = 3
 
-            End If 
+            End If
     Next i
 
 ' CHALLENGE CALCULATION AND VARIABLE ASSIGNMENTS
-    ' Declaring values for your min and max values 
+    ' Declaring values for your min and max values
     ' Also inserting the scan thru last row
-    Dim GreatIncrease as Double
-    Dim GreatDecrease as Double
+    Dim GreatestIncrease As Double
+    Dim GreatestDecrease As Double
+    Dim IncreaseTicker As String
+    Dim DecreaseTicker As String
+    Dim MaxVolume As Double
+    Dim MaxVolumeTicker As String
 
     Dim PercentLastRow As Long
-        PercentLastRow = ws.Cells(Rows.Count, 1).End(xlUp).Row
+        PercentLastRow = ws.Cells(Rows.Count, 11).End(xlUp).Row
 
     ' Set Increase and Decrease Value to 0
-    GreatIncrease = 0
-    GreatDecrease = 0
+    GreatestIncrease = 0
+    GreatestDecrease = 0
 
     ' Begin for loop
         For i = 2 To PercentLastRow
 
-    ' Begin Conditional Calculations
+' Begin Conditional Calculations
 
+    'Calculating the Greatest Increase
+    ' Greatest Increase starts at 0 , condition states as it loops if new value is greater than the stored value in Greatest Increase that is your new PercentLoop value
+    If GreatestIncrease < ws.Cells(i, 11).Value Then
+        GreatestIncrease = ws.Cells(i, 11).Value
+                
+        ' Print the ticker value found during Greatest Increase
+        ws.Range("O2").Value = ws.Cells(i, 9).Value
 
+         ' Print the highest % increase found in Greatest Increase
+        ws.Range("P2").Value = (Str(GreatestIncrease * 100) & "%")
+     
+    ' Adding Greatest Decrease conditionals
+    ' Greatest Decrease starts at 0 , condition states as it loops if new value is LESS than the stored value in GreaterDecrease that is your new PercentLoop value
+    ' 0 starting point. 0 is > -1 ... - 1 is now PercentCellLoop.
+    ElseIf GreatestDecrease > ws.Cells(i, 11).Value Then
+    GreatestDecrease = ws.Cells(i, 11).Value
+        
+        ' Print the ticker value found during PercentCellLoop
+        ws.Range("O3").Value = ws.Cells(i, 9).Value
 
-    Next i 
+        ' Print the lowest % decrease found in PercentCellLoop
+        ws.Range("P3").Value = (Str(GreatestDecrease * 100) & "%")
+    
+
+    End If
+    
+Next i
 Next ws
 
 
 
 End Sub
+
 
 
 
