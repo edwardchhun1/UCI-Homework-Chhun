@@ -7,6 +7,13 @@ For Each ws In Worksheets
     ws.Range("J1").Value = "Yearly Change"
     ws.Range("K1").Value = "Percent Change"
     ws.Range("L1").Value = "Total Stock Volume"
+    
+    ' Bonus header/field declaration
+    ws.Range("O2").Value = "Greatest % Increase"
+    ws.Range("O3").Value = "Greatest % Decrease"
+    ws.Range("O4").Value = "Greatest Total Volume"
+    ws.Range("P1").Value = "Ticker"
+    ws.Range("Q1").Value = "Value"
 
 ' Assigning variables
     Dim i As Long
@@ -68,7 +75,9 @@ For Each ws In Worksheets
 
                 ' Calculating total volume for given ticker
                 Total_Volume = Total_Volume + ws.Cells(i, 7).Value
-            
+                'when 2nd and 3rd have the same ticker value = add
+                ' should be an else statement as well - if they do match we need to continue adding for accumulated 'A' ticker
+                
 ' ----------------------------------------------------------------------
 ' Getting the values to be input into the cells
 
@@ -95,7 +104,19 @@ For Each ws In Worksheets
                 Total_Volume = 0
             
             End If
+        
+        Else   
+            Total_Volume = Total_Volume + ws.Cells(i, 7).Value
+        
         End If    
+
+            If ws.Cells(i, 10).Value >=0 Then
+                ws.Cells(i, 10).Interior.ColorIndex = 4
+        
+            Else 
+                ws.Cells(i, 10).Interior.ColorIndex = 3
+
+            End If 
     Next i
 Next ws
 End Sub
