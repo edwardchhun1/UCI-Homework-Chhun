@@ -104,21 +104,11 @@ For Each ws In Worksheets
                 Total_Volume = 0
             
             End If
-           
-
 
         Else
             Total_Volume = Total_Volume + ws.Cells(i, 7).Value
-        
         End If
 
-            If ws.Cells(i, 10).Value >= 0 Then
-                ws.Cells(i, 10).Interior.ColorIndex = 4
-        
-            Else
-                ws.Cells(i, 10).Interior.ColorIndex = 3
-
-            End If
     Next i
 
 ' CHALLENGE CALCULATION AND VARIABLE ASSIGNMENTS
@@ -128,8 +118,8 @@ For Each ws In Worksheets
     Dim GreatestDecrease As Double
     Dim IncreaseTicker As String
     Dim DecreaseTicker As String
-    Dim MaxVolume As Double
-    Dim MaxVolumeTicker As String
+    Dim GreatestVolume As Double
+    Dim VolumeTicker As String
 
     Dim PercentLastRow As Long
         PercentLastRow = ws.Cells(Rows.Count, 11).End(xlUp).Row
@@ -166,15 +156,44 @@ For Each ws In Worksheets
         ' Print the lowest % decrease found in PercentCellLoop
         ws.Range("P3").Value = (Str(GreatestDecrease * 100) & "%")
     
-
     End If
-    
+
+        Next i 
+' 
+    Dim VolumeLastRow As Long
+        VolumeLastRow = ws.Cells(Rows.Count, 12).End(xlUp).Row
+
+    ' Set Increase and Decrease Value to 0
+    GreatestVolume = 0
+   
+    ' Begin for loop
+        For i = 2 To VolumeLastRow
+
+
+    If GreatestVolume < ws.Cells(i, 12).Value Then
+        GreatestVolume = ws.Cells(i, 12).Value
+                
+        ' Print the ticker value found during Greatest Volume Search
+        ws.Range("O4").Value = ws.Cells(i, 9).Value
+
+        ' Print the highest volume found in Greatest Volume Search
+        ws.Range("P4").Value = (GreatestVolume)
+
+'Adding Color for Conditional Formatting
+If ws.Cells(i, 10).Value >= 0 Then
+ws.Cells(i, 10).Interior.ColorIndex = 4
+        
+'Adding Red for negative values
+ElseIf ws.Cells(i, 10).Value < 0 Then
+ws.Cells(i, 10).Interior.ColorIndex = 3
+
+End If
+
 Next i
 Next ws
 
-
-
 End Sub
+
 
 
 
