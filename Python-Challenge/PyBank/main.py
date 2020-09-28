@@ -48,3 +48,22 @@ with open(csvpath) as bankbudget:
     print(f"Average Change: {round(sum(average_change)/len(average_change),2)}")
     print(f"Greatest Increase in Profits: {total_months[increase_month]} (${(str(greatest_increase))})") 
     print(f"Greatest Decrease in Profits: {total_months[decrease_month]} (${(str(greatest_decrease))})")
+
+    #Create where summary will be save
+    cvspath = os.path.join('Analysis', 'Analysis_Summary.txt')
+    with open(cvspath,"w") as file:
+
+    # Outputting to PyBank Analysis folder
+        file.write("Financial Analysis")
+        file.write("\n") 
+        file.write("----------------------")
+        file.write("\n")
+        file.write(f"Total Months: {len(total_months)}")
+        file.write("\n")
+        file.write(f"Total: ${sum(total_net)}")
+        file.write("\n")
+        file.write(f"Average Change: {round(sum(average_change)/len(average_change),2)}")
+        file.write("\n")
+        file.write(f"Greatest Increase in Profits: {total_months[increase_month]} (${(str(greatest_increase))})") 
+        file.write("\n")
+        file.write(f"Greatest Decrease in Profits: {total_months[decrease_month]} (${(str(greatest_decrease))})")
