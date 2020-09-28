@@ -67,3 +67,11 @@ with open(csvpath) as bankbudget:
         file.write(f"Greatest Increase in Profits: {total_months[increase_month]} (${(str(greatest_increase))})") 
         file.write("\n")
         file.write(f"Greatest Decrease in Profits: {total_months[decrease_month]} (${(str(greatest_decrease))})")
+
+
+
+
+            if vote_count[i] > max_votes:
+        max_votes = vote_count[i]
+        print(max_votes)
+        max_index = i 
