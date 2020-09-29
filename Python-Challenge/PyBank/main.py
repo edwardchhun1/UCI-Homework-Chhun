@@ -71,7 +71,3 @@ with open(csvpath) as bankbudget:
 
 
 
-            if vote_count[i] > max_votes:
-        max_votes = vote_count[i]
-        print(max_votes)
-        max_index = i 
