@@ -1,3 +1,4 @@
 # Ignore the below files
 *.DS_Store
 *.csv
+.py
