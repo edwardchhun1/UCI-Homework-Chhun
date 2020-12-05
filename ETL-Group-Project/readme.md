@@ -15,7 +15,6 @@ A few transformations and cleanup required:
 * Renaming the columns after merging the datasets. 
 * Dropping useless data, including those with NaN values. 
 * Ensuring that our 2008-2011 values for GDP and Life Expectancy were Float values and not object. 
-* 
 
 ## Load
 We chose to have 3 different tables set up in the schema. 1 strictly for GDP, 1 strictly for Life Expectancy, and the last for GDP and Life Expectancy combined. 
@@ -23,3 +22,5 @@ We chose to have 3 different tables set up in the schema. 1 strictly for GDP, 1 
 This would offer the ability to strictly view each dataset (GDP and Life Expectancy) within its own queries and allow for the user to create join statements based on use case/need at any given moment.
 
 We also created the merged dataset as a table so that again, the user can dive into a pre-created table to pull queries a little quicker. 
+
+Our dataset was relational as there were commonalities within the metadata. We were able to link country and country code across multiple datasets.
